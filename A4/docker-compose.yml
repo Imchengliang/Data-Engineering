@@ -1,0 +1,16 @@
+version: "2"
+services:
+  master:
+    image: sparkaio/first:v0
+    command: /usr/local/spark/sbin/start-master.sh
+    hostname: master
+    ports:
+      - "6066:6066"
+      - "7070:7070"
+      - "8080:8080"
+      - "50070:50070"
+  worker:
+    image: sparkaio/first:v0
+    command: /usr/local/spark/sbin/start-worker.sh
+    links:
+      - master
